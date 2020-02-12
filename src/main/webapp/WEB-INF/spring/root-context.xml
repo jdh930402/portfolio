@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:my/shop/portfolio/resource/db.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.BrandMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.CategoryMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.UserMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.AddressMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.AdminMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.OriginMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.SizeMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.ProductMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.ImageMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.CartListMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.PurchaseMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="my.shop.portfolio.mapper.QnaMapper"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+</beans>
